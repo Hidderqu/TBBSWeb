@@ -1,0 +1,60 @@
+<template name='inscription'>
+
+
+	<form class = "signup_form">
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">Devenir membre TBB&amp;S</div>
+		  <div class="panel-body">
+		    <div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+			  <input type="text" name="nom" class="form-control" placeholder="Nom" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+			  <input type="text" name="prenom" class="form-control" placeholder="Prénom" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div class="form-group">
+		      <select class="form-control" name="lycee" placeholder="Lycée">
+				  <option hidden>Lycée</option>
+				  <option value="SAN">Ste Anne</option>
+				  <option value="AMJ">Anne Marie Javouey</option>
+				  <option value="LCR">La Croix Rouge</option>
+				  <option value="NA">Autre</option>
+			</select>
+		  	</div>
+		  </div>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">Informations de compte</div>
+		   <div class="panel-body">
+		    <div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
+			  <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+			  <input type="password" name="passwd" class="form-control" placeholder="Mot de passe" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+			  <input type="password" name="passwd_conf" class="form-control" placeholder="Confirmation de mot de passe" aria-describedby="basic-addon1">
+			</div>
+		  </div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+			  	<button type="button" class="btn btn-default pull-left"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Retourner à l'accueil</button>
+				<button type="submit" class="btn btn-success pull-right">Terminer l'inscription</button>
+			</div>
+		</div>
+	
+	</form>
+
+</template>

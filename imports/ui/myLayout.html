@@ -1,0 +1,34 @@
+<template name='myLayout'>
+	
+	<header>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{{pathFor route='home'}}">TBB&amp;S - Mentorat</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav nav-tabs">
+              <li><a href="{{pathFor route='home'}}">Accueil</a></li>
+              <li><a href="{{pathFor route='taskList'}}">Ateliers de découverte</a></li>
+              <li><a href="{{pathFor route='cours'}}">Cours</a></li>
+            </ul>
+            {{#if currentUser}}
+              <p class="navbar-text navbar-right">Connecté en tant que {{currentUser.profile.prenom}} {{currentUser.profile.nom}} -
+              <a href="{{pathFor route='home'}}" id="signOutLink">Se déconnecter</a>
+              </p>
+            {{else}}
+              <p class="navbar-text navbar-right">Déconnecté - <a href="{{pathFor route='inscription'}}">S'inscrire</a>
+              ou
+              <a href="{{pathFor route='connexion'}}">Se connecter</a></p>
+            {{/if}}
+          </div><!-- /.navbar-collapse -->
+        </div>
+      </nav>
+  </header>
+
+  <div id="page-content">
+    {{> yield}}
+  </div>
+  
+
+</template>
