@@ -1,0 +1,15 @@
+<template name='wshopList'>
+    {{#if currentUser}}
+        <form class="new-wshop">
+          <input type="text" name="theme" placeholder="Th&egrave;me de l'atelier" />
+          <input type="text" name="desc" placeholder="Description de l'atelier" />
+          <input type="submit">
+        </form>
+    {{/if}}
+
+	<ul>
+      {{#each workshops}}
+        {{> wshop}}
+      {{/each}}
+  </ul>
+</template>

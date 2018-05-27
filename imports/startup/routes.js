@@ -22,8 +22,8 @@ Router.route('/', {
 	name: 'home',
 });
 
-Router.route('/taskList', {
-	name: 'taskList',
+Router.route('/wshopList', {
+	name: 'wshopList',
 });
 
 Router.route('/cours', {
