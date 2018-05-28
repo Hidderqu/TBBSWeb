@@ -1,29 +1,37 @@
 <template name='connexion'>
-	<form class = "signin_form">
-	
-	<div class="panel panel-default">
-	  <div class="panel-heading">Se connecter</div>
-	  <div class="panel-body">
-		    <div class="input-group">
-			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
-			  <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" aria-describedby="basic-addon1">
-			</div>
-			<br>
-			<div class="input-group">
-			  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-			  <input type="password" name="passwd" class="form-control" placeholder="Mot de passe" aria-describedby="basic-addon1">
-			</div>
-			<br>
 
-	  </div>
-	</div>
+	<div class="container">
 
-	<div class="panel panel-default">
-		<div class="panel-body">
-		  	<button type="button" class="btn btn-default pull-left"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Retourner à l'accueil</button>
-			<button type="submit" class="btn btn-success pull-right">Connexion</button>
+		<div class="page-header">
+			<h1>Se connecter</h1>
 		</div>
+
+		<form class = "signin_form">
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">Mon compte</div>
+		  <div class="panel-body">
+			    <div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></span>
+				  <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" aria-describedby="basic-addon1">
+				</div>
+				<br>
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+				  <input type="password" name="passwd" class="form-control" placeholder="Mot de passe" aria-describedby="basic-addon1">
+				</div>
+				<br>
+
+		  </div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+			  	<button type="button" class="btn btn-default pull-left"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Retourner à l'accueil</button>
+				<button type="submit" class="btn btn-success pull-right">Connexion</button>
+			</div>
+		</div>
+		
+		</form>
 	</div>
-	
-	</form>
 </template>

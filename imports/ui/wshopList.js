@@ -14,7 +14,7 @@ Template.wshopList.onCreated(function bodyOnCreated() {
 Template.wshopList.helpers({
   
   workshops() {
-    return Workshops.find({}, { sort: { createdAt: -1 } });
+    return Workshops.find({}, { sort: { voters: -1 } });
   },
   
 });

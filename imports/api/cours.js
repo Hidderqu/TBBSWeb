@@ -3,6 +3,8 @@ import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import { Match } from 'meteor/check'
 import SimpleSchema from 'simpl-schema';
+import { Roles } from 'meteor/alanning:roles';
+
 
 export const Events = new Mongo.Collection( 'events' );
 
@@ -20,6 +22,14 @@ export const EventsSchema = new SimpleSchema({
     type: String,
     label: 'When this event will end.'
   },
+  'h_start': {
+    type: String,
+    label: 'Heure de départ',
+  },
+  'h_end': {
+    type: String,
+    label: 'Heure de fin',
+  },
   'subject': {
     type: String,
     label: 'Matiere etudiee',
@@ -36,6 +46,10 @@ export const EventsSchema = new SimpleSchema({
   'owner': {
     type: String,
     label: 'Propriétaire evenement'
+  },
+  'validated': {
+    type: Boolean,
+    label: 'Cours validé',
   }
 });
 
@@ -58,10 +72,13 @@ Meteor.methods({
       title: String,
       start: String,
       end: String,
+      h_start: String,
+      h_end: String,
       subject: String,
       student: String,
       teacher: String,
-      owner: String
+      owner: String,
+      validated: Boolean,
     });
 
     try {
@@ -78,11 +95,21 @@ Meteor.methods({
       title: Match.Optional( String ),
       start: String,
       end: String,
+      h_start: Match.Optional ( String ),
+      h_end: Match.Optional ( String ),
       subject: Match.Optional( String ),
       student: Match.Optional( String ),
       teacher: Match.Optional( String ),
       owner: Match.Optional( String ),
+      validated: Match.Optional( Boolean),
     });
+
+    const mod_event = Events.findOne(event._id);
+
+    if (mod_event.owner !== Meteor.userId()) {
+      // If the task is private, make sure only the owner can delete it
+      throw new Meteor.Error('not-owner');
+    }
 
     try {
       return Events.update( event._id, {
@@ -92,18 +119,18 @@ Meteor.methods({
       throw new Meteor.Error( '500', `${ exception }` );
     }
   },
-  removeEvent( event ) {
-    check( event, String );
+  removeEvent( eventId ) {
+    check( eventId, String );
 
-/*  FIX THIS !!!
-    if (event.owner !== Meteor.userId()) {
-      // N'autoriser les utilisateurs qu'à supprimer leurs propres créneaux
-      throw new Meteor.Error('not-authorized');
+    const event = Events.findOne(eventId);
+
+    if (event.owner !== Meteor.userId() && !Roles.userIsInRole( Meteor.userId(), 'admin' )) {
+      // If the task is private, make sure only the owner can delete it
+      throw new Meteor.Error('not-authorised');
     }
-*/
 
     try {
-      return Events.remove( event );
+      return Events.remove( eventId );
     } catch ( exception ) {
       throw new Meteor.Error( '500', `${ exception }` );
     }

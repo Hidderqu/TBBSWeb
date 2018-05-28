@@ -29,7 +29,8 @@ Template.cours.onRendered( () => {
     },
     eventRender( event, element ) {
       element.find( '.fc-content' ).html(
-        `<h4 class="student">${ event.student }</h4>
+        `<h3 class="time">${ event.h_start } - ${ event.h_end }</h3>
+         <h4 class="student">${ event.student }</h4>
          <p class="course-details">${ event.teacher }<br>
          ${ event.subject }<br>
          ${ event.title } </p>
@@ -89,8 +90,8 @@ Template.addEditEventModal.helpers({
 
     if ( eventModal ) {
       return {
-        button: eventModal.type === 'edit' ? 'Edit' : 'Add',
-        label: eventModal.type === 'edit' ? 'Edit' : 'Add an'
+        button: eventModal.type === 'edit' ? 'Modifier' : 'Demander',
+        label: eventModal.type === 'edit' ? 'Modifier' : 'Demander'
       };
     }
   },
@@ -125,10 +126,13 @@ Template.addEditEventModal.events({
           title: template.find( '[name="title"]' ).value,
           start: template.find( '[name="start"]' ).value,
           end: template.find( '[name="end"]' ).value,
+          h_start: template.find( '[name="h_start"]' ).value,
+          h_end: template.find( '[name="h_end"]' ).value,
           subject: template.find( '[name="subject"] option:selected' ).value,
           student: Meteor.user().profile.nom,
           teacher: template.find( '[name="teacher"]' ).value,
-          owner: Meteor.userId()
+          owner: Meteor.userId(),
+          validated: false
         };
         console.log(eventItem);
 
@@ -147,7 +151,7 @@ Template.addEditEventModal.events({
   },
   'click .delete-event' ( event, template ) {
     let eventModal = Session.get( 'eventModal' );
-    if ( confirm( 'Are you sure? This is permanent.' ) ) {
+    if ( confirm( 'Êtes-vous sûr(e)? Vous ne pourrez plus revenir en arrière.' ) ) {
       Meteor.call( 'removeEvent', eventModal.event, ( error ) => {
         if ( error ) {
           console.log('Danger');

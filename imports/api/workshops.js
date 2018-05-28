@@ -68,6 +68,7 @@ Meteor.methods({
   'workshops.remove'(workshopId) {
     check(workshopId, String);
 
+    //Verif connecté
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
     }
@@ -90,7 +91,7 @@ Meteor.methods({
 
     const wshop = Workshops.findOne(workshopId);
     if (wshop.voters.includes(Meteor.userId())) {
-      // If the task is private, make sure only the owner can delete it
+      //Make sure only the owner can delete it
       throw new Meteor.Error('cannot vote twice');
     }
  

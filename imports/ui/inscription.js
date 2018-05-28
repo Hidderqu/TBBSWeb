@@ -18,7 +18,8 @@ Template.inscription.events({
 		const target = event.target; //target = form
     	const nom = target.nom.value;
     	const prenom = target.prenom.value;
-    	const id = target.identifiant.value;
+        const id = target.identifiant.value;
+    	const email = target.email.value;
     	const pass = target.passwd.value;
     	const pass_conf = target.passwd_conf.value;
     	const lycee = target.lycee.value;
@@ -53,12 +54,23 @@ Template.inscription.events({
     		console.log("Erreur confirmation de mot de passe");
     	}
 
+        
+        if (
+            /^[a-zA-Z][a-zA-Z0-9_-]+[a-zA-Z0-9]@([a-zA-Z][a-zA-Z0-9-]+\.)+[a-zA-Z]{2,3}$/
+            .test(email) == false
+        ) {
+        infoOK = false;
+        console.log("Mail invalide");
+        }
+        
+
     	//Creation de l'utilisateur
     	if (infoOK) {
 
             var newUser = {
                 username: id,
                 password: pass,
+                email: email,
                 profile: {
                     nom: nom,
                     prenom: prenom,
